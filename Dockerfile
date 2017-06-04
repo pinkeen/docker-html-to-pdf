@@ -15,11 +15,9 @@ RUN curl -sL https://deb.nodesource.com/setup_8.x | bash
 RUN apt-get update && apt-get install -y --no-install-recommends nodejs
 RUN npm install -g chrome-headless-render-pdf
 
-RUN mkdir -p /opt/html-to-pdf/out
-WORKDIR /opt/html-to-pdf
+RUN mkdir /tmp/html-to-pdf
+WORKDIR /tmp/html-to-pdf
 
-ENV SRC_URL http://google.com
-
-#ENTRYPOINT ['chrome-headless-render-pdf']
+ENTRYPOINT ["/usr/bin/chrome-headless-render-pdf"]
 
 

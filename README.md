@@ -5,7 +5,7 @@ header/footer the approach uses a nodejs script which connects to chrome via
 remote interface. It also executes 5s of javascript (virtual time) to ensure
 that the page is fully rendered.
 
-Check out the code by my colleague: https://github.com/Szpadel/chrome-headless-render-pdf.
+Check out the code by my colleague: [chrome-headless-render](https://github.com/Szpadel/chrome-headless-render-pdf).
 
 ## How to run it?
 
@@ -23,7 +23,7 @@ docker run -v /your-local-dir:/tmp/html-to-pdf --privileged pink33n/html-to-pdf 
 Will produce `/your-local-dir/out.pdf` file.
 
 
-## Why not use google-chrome yum repository?
+## Why not use google-chrome deb repository?
 
 As it is an unstable version things will probably change & break, you will want 
 your pdf output stable.
@@ -33,4 +33,4 @@ You'll want a specific version of chrome and this is the way to guarantee that.
 
 ## Version tags
 
-The container versioning scheme is `#{MAJOR_CHROME_VERSION}.${CONTAINER_VERSION}`
+The container versioning scheme is `${MAJOR_CHROME_VERSION}.${CONTAINER_VERSION}`

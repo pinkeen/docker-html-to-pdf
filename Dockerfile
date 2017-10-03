@@ -8,7 +8,7 @@ RUN apt-get update \
         libxrender1 libxss1 libxtst6 lsb-release wget xdg-utils curl bash \
     && rm -rf /var/lib/apt/lists/*
 
-RUN curl http://dl.google.com/linux/deb/pool/main/g/google-chrome-unstable/google-chrome-unstable_60.0.3112.7-1_amd64.deb -o /tmp/chrome.deb
+RUN curl https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o /tmp/chrome.deb
 RUN dpkg -i /tmp/chrome.deb && rm /tmp/chrome.deb
 
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash
@@ -19,5 +19,3 @@ RUN mkdir /tmp/html-to-pdf
 WORKDIR /tmp/html-to-pdf
 
 ENTRYPOINT ["/usr/bin/chrome-headless-render-pdf"]
-
-

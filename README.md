@@ -22,15 +22,6 @@ docker run -v /your-local-dir:/tmp/html-to-pdf --privileged pink33n/html-to-pdf 
 
 Will produce `/your-local-dir/out.pdf` file.
 
-
-## Why not use google-chrome deb repository?
-
-As it is an unstable version things will probably change & break, you will want 
-your pdf output stable.
- 
-You'll want a specific version of chrome and this is the way to guarantee that.
-
-
 ## Version tags
 
 The container versioning scheme is `${MAJOR_CHROME_VERSION}.${CONTAINER_VERSION}`

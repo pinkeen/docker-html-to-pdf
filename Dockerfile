@@ -6,9 +6,8 @@ RUN apt-get update && \
 RUN curl -o - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
   echo "deb http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list && \
   apt-get update && \
-  apt-get install -y 'google-chrome-stable=61.0.3163.100-1' && \
+  apt-get install -y 'google-chrome-stable=70.0.3538.102-1' && \
   rm -rf /var/lib/apt/lists/*
-
 
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash
 RUN apt-get update && apt-get install -y --no-install-recommends nodejs
@@ -17,6 +16,4 @@ RUN npm install -g chrome-headless-render-pdf
 RUN mkdir /tmp/html-to-pdf
 WORKDIR /tmp/html-to-pdf
 
-ENTRYPOINT ["/usr/bin/chrome-headless-render-pdf"]
-
-
+ENTRYPOINT ["/usr/bin/chrome-headless-render-pdf", "--chrome-option=--no-sandbox"]

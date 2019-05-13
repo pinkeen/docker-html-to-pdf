@@ -10,17 +10,18 @@ Check out the code by my colleague: [chrome-headless-render](https://github.com/
 ## How to run it?
 
 You need to mount a container workdir locally to be able to get the output file.
-Also because chrome uses some kernel feature for sandboxing you need to run the container
-in `--privileged` mode. It's possible to work around this by disabling sandboxing
-but this seems to work best.
 
 The workdir is `/tmp/html-to-pdf`, thus running:
 
 ```
-docker run -v /your-local-dir:/tmp/html-to-pdf --privileged pink33n/html-to-pdf --url http://google.com --pdf out.pdf
+docker run -v `pwd`:/tmp/html-to-pdf pink33n/html-to-pdf --url http://google.com --pdf out.pdf
 ```
 
-Will produce `/your-local-dir/out.pdf` file.
+Will produce `out.pdf` file in your current directory.
+
+## Privileged mode
+
+The chrome sandbox is disabled automatically via `--chrome-option=--no-sandbox` switch so you *don't have to use* the `--privileged` mode when running the container anymore. 
 
 ## Version tags
 

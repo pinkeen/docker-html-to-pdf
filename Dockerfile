@@ -6,7 +6,7 @@ RUN apt-get update && \
 RUN curl -o - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
   echo "deb http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list && \
   apt-get update && \
-  apt-get install -y 'google-chrome-stable=74.0.3729.131-1' && \
+  apt-get install -y 'google-chrome-stable=80.0.3987.116-1' && \
   rm -rf /var/lib/apt/lists/*
 
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash

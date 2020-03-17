@@ -1,19 +1,27 @@
-FROM ubuntu:16.04
+FROM alpine:3
 
-RUN apt-get update && \
-    apt-get install -y curl
+RUN apk update \
+    && apk add --no-cache \
+      chromium \
+      nodejs \
+      npm \
+      sed \
+      bash \
+      procps
 
-RUN curl -o - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
-  echo "deb http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list && \
-  apt-get update && \
-  apt-get install -y 'google-chrome-stable=74.0.3729.131-1' && \
-  rm -rf /var/lib/apt/lists/*
+RUN npm install -g \
+      chrome-headless-render-pdf \
+      node-static
 
-RUN curl -sL https://deb.nodesource.com/setup_8.x | bash
-RUN apt-get update && apt-get install -y --no-install-recommends nodejs
-RUN npm install -g chrome-headless-render-pdf
+COPY entrypoint.bash /usr/local/bin/entrypoint
+COPY chrome-wrapper.bash /usr/local/bin/chrome-wrapper
 
-RUN mkdir /tmp/html-to-pdf
-WORKDIR /tmp/html-to-pdf
+RUN mkdir /tmp/html-to-pdf \
+    && chmod +x /usr/local/bin/*
 
-ENTRYPOINT ["/usr/bin/chrome-headless-render-pdf", "--chrome-option=--no-sandbox"]
+ARG WORKDIR="/workspace"
+ENV WORKDIR="${WORKDIR}"
+
+WORKDIR "${WORKDIR}"
+
+ENTRYPOINT [ "/usr/local/bin/entrypoint" ]

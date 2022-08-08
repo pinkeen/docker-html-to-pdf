@@ -64,14 +64,14 @@ serve() {
 }
 
 render() {
-    local CMD="chrome-headless-render-pdf --chrome-binary=/usr/local/bin/chrome-wrapper $@"
+    local CMD="chrome-headless-render-pdf --chrome-binary=/usr/local/bin/chrome-wrapper"
 
-    echo -e "\n---  Running render: $CMD \n"
-    $CMD | sed -E 's/^/[render] > /g'
+    echo -e "\n---  Running render: $CMD $@\n"
+    $CMD "$@" | sed -E 's/^/[render] > /g'
 }
 
 info
 serve
-render $@
+render "$@"
 quit
 
